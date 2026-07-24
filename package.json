@@ -1,0 +1,37 @@
+{
+  "name": "@endge/computation-sandbox",
+  "version": "0.1.2",
+  "private": false,
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/computation-sandbox.js",
+  "module": "./dist/computation-sandbox.js",
+  "types": "./dist/main.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "import": "./dist/computation-sandbox.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "vite build",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@jitl/quickjs-ng-wasmfile-release-sync": "^0.32.0",
+    "quickjs-emscripten-core": "^0.32.0",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "@endge/core": "^1.2.7"
+  },
+  "devDependencies": {
+    "@endge/core": "^1.2.8",
+    "rimraf": "^6.0.1",
+    "vite": "^6.1.0",
+    "vite-plugin-dts": "^4.5.0",
+    "vitest": "^2.1.9"
+  }
+}
