@@ -41,8 +41,6 @@ describe('QuickJSComputationVM', () => {
 
   it('executes the acceptance Endge to TypeScript to Endge graph', async () => {
     const compiled = compileComputation({
-      input: null,
-      output: null,
       source: `defineComputation({
         outputs: {
           base: 5,
