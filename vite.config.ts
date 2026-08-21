@@ -14,6 +14,15 @@ export default defineConfig({
     },
     rollupOptions: { external: ['@endge/core'] },
   },
-  worker: { format: 'es' },
+  worker: {
+    format: 'es',
+    rollupOptions: {
+      output: {
+        // The published worker is consumed as a static asset by downstream Vite builds.
+        // Keep it self-contained so consumers do not have to discover and copy sibling chunks.
+        inlineDynamicImports: true,
+      },
+    },
+  },
   plugins: [dts({ rollupTypes: false, include: ['src'], exclude: ['src/test/**'] })],
 })
