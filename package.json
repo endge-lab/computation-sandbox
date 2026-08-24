@@ -1,6 +1,6 @@
 {
   "name": "@endge/computation-sandbox",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "private": false,
   "license": "Apache-2.0",
   "type": "module",
@@ -26,12 +26,12 @@
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "@endge/core": "^2.0.3"
+    "@endge/core": "^3.0.1"
   },
   "devDependencies": {
-    "@endge/core": "^2.0.3",
-    "@endge/raph": "^3.0.10",
-    "@endge/utils": "^0.24.12",
+    "@endge/core": "^3.0.1",
+    "@endge/raph": "^3.0.11",
+    "@endge/utils": "^0.24.13",
     "rimraf": "^6.0.1",
     "vite": "^6.1.0",
     "vite-plugin-dts": "^4.5.0",
