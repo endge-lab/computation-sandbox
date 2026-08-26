@@ -1,7 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
-import dts from 'vite-plugin-dts'
+import dts from 'unplugin-dts/vite'
 
 export default defineConfig({
   base: './',
@@ -24,5 +24,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [dts({ rollupTypes: false, include: ['src'], exclude: ['src/test/**'] })],
+  plugins: [dts({ bundleTypes: false, include: ['src'], exclude: ['src/test/**'] })],
 })
