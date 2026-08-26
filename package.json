@@ -1,6 +1,6 @@
 {
   "name": "@endge/computation-sandbox",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "private": false,
   "license": "Apache-2.0",
   "type": "module",
@@ -20,7 +20,9 @@
     "dev": "vite build --watch",
     "build": "vite build",
     "test": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint-check": "eslint . --cache",
+    "lint-fix": "eslint . --fix --cache"
   },
   "dependencies": {
     "@jitl/quickjs-ng-wasmfile-release-sync": "^0.32.0",
@@ -31,9 +33,11 @@
     "@endge/core": "^3.0.1 || ^4.0.0"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "9.3.0",
     "@endge/core": "^4.0.0",
     "@endge/raph": "^3.0.11",
     "@endge/utils": "^0.25.0",
+    "eslint": "10.9.1",
     "rimraf": "^6.0.1",
     "unplugin-dts": "^1.0.3",
     "vite": "^6.1.0",
