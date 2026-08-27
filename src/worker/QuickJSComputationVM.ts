@@ -12,32 +12,32 @@ export interface QuickJSComputationVMOptions {
 
 /** One isolated QuickJS VM factory used inside a Worker. */
 export class QuickJSComputationVM {
-  private readonly quickJs = newQuickJSWASMModuleFromVariant(variant)
-  private readonly moduleSources = new Map<string, string>()
-  private readonly executionTimeoutMs: number
-  private readonly memoryLimitBytes: number
-  private readonly stackLimitBytes: number
+  private readonly _quickJs = newQuickJSWASMModuleFromVariant(variant)
+  private readonly _moduleSources = new Map<string, string>()
+  private readonly _executionTimeoutMs: number
+  private readonly _memoryLimitBytes: number
+  private readonly _stackLimitBytes: number
 
   constructor(options: QuickJSComputationVMOptions = {}) {
-    this.executionTimeoutMs = options.executionTimeoutMs ?? 250
-    this.memoryLimitBytes = options.memoryLimitBytes ?? 32 * 1024 * 1024
-    this.stackLimitBytes = options.stackLimitBytes ?? 512 * 1024
+    this._executionTimeoutMs = options.executionTimeoutMs ?? 250
+    this._memoryLimitBytes = options.memoryLimitBytes ?? 32 * 1024 * 1024
+    this._stackLimitBytes = options.stackLimitBytes ?? 512 * 1024
   }
 
   async execute(request: ComputationSandboxRequest): Promise<unknown> {
     assertJsonCompatible(request.inputs, 'inputs')
-    if (!this.moduleSources.has(request.moduleKey)) {
-      this.moduleSources.set(request.moduleKey, transpileCompute(request.source))
+    if (!this._moduleSources.has(request.moduleKey)) {
+      this._moduleSources.set(request.moduleKey, transpileCompute(request.source))
     }
 
-    const module = await this.quickJs
+    const module = await this._quickJs
     const runtime = module.newRuntime()
-    runtime.setMemoryLimit(this.memoryLimitBytes)
-    runtime.setMaxStackSize(this.stackLimitBytes)
-    runtime.setInterruptHandler(shouldInterruptAfterDeadline(Date.now() + this.executionTimeoutMs))
+    runtime.setMemoryLimit(this._memoryLimitBytes)
+    runtime.setMaxStackSize(this._stackLimitBytes)
+    runtime.setInterruptHandler(shouldInterruptAfterDeadline(Date.now() + this._executionTimeoutMs))
     const context = runtime.newContext()
     try {
-      const result = context.evalCode(makeProgram(this.moduleSources.get(request.moduleKey)!, request.inputs))
+      const result = context.evalCode(makeProgram(this._moduleSources.get(request.moduleKey)!, request.inputs))
       if (result.error) {
         const error = context.dump(result.error)
         result.error.dispose()

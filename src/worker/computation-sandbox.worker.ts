@@ -5,7 +5,7 @@ import { QuickJSComputationVM } from './QuickJSComputationVM'
 
 const vm = new QuickJSComputationVM()
 
-self.onmessage = async (event: MessageEvent<SandboxBatchRequest>) => {
+globalThis.onmessage = async (event: MessageEvent<SandboxBatchRequest>) => {
   if (event.data?.type !== 'execute-batch') {
     return
   }
@@ -19,5 +19,5 @@ self.onmessage = async (event: MessageEvent<SandboxBatchRequest>) => {
       results.push({ id: item.id, ok: false, message: error instanceof Error ? error.message : String(error) })
     }
   }
-  self.postMessage({ type: 'execute-batch-result', results } satisfies SandboxBatchResponse)
+  globalThis.postMessage({ type: 'execute-batch-result', results } satisfies SandboxBatchResponse)
 }
