@@ -14,63 +14,6 @@ interface PendingRequest {
   reject: (error: Error) => void
 }
 
-/** Batched Worker pool adapter for the core computation runtime. */
-export class QuickJSComputationSandbox implements ComputationSandboxAdapter {
-  private readonly _workers: WorkerSlot[]
-  private readonly _queue: PendingRequest[] = []
-  private _nextId = 1
-  private _scheduled = false
-  private _disposed = false
-
-  constructor(options: QuickJSComputationSandboxOptions = {}) {
-    const hardware = typeof navigator === 'undefined' ? 2 : navigator.hardwareConcurrency || 2
-    const count = options.workerCount ?? Math.min(4, Math.max(1, hardware - 1))
-    const watchdogMs = options.watchdogMs ?? 500
-    this._workers = Array.from({ length: count }, () => new WorkerSlot(watchdogMs))
-  }
-
-  execute(request: ComputationSandboxRequest): Promise<unknown> {
-    if (this._disposed) {
-      return Promise.reject(new Error('Computation sandbox is disposed.'))
-    }
-    return new Promise((resolve, reject) => {
-      this._queue.push({ id: this._nextId++, request, resolve, reject })
-      if (!this._scheduled) {
-        this._scheduled = true
-        queueMicrotask(() => this._flush())
-      }
-    })
-  }
-
-  dispose(): void {
-    this._disposed = true
-    for (const item of this._queue) {
-      item.reject(new Error('Computation sandbox is disposed.'))
-    }
-    this._queue.splice(0)
-    for (const worker of this._workers) {
-      worker.dispose()
-    }
-  }
-
-  private _flush(): void {
-    this._scheduled = false
-    if (this._disposed || !this._queue.length) {
-      return
-    }
-    const batches = Array.from({ length: this._workers.length }, () => [] as PendingRequest[])
-    let index = 0
-    while (this._queue.length) {
-      batches[index++ % batches.length]!.push(this._queue.shift()!)
-    }
-    batches.forEach((batch, workerIndex) => {
-      if (batch.length) {
-        this._workers[workerIndex]!.execute(batch)
-      }
-    })
-  }
-}
-
 class WorkerSlot {
   private _worker = this._createWorker()
   private readonly _queued: PendingRequest[][] = []
@@ -176,6 +119,62 @@ class WorkerSlot {
   }
 }
 
+/** Batched Worker pool adapter for the core computation runtime. */
+export class QuickJSComputationSandbox implements ComputationSandboxAdapter {
+  private readonly _workers: WorkerSlot[]
+  private readonly _queue: PendingRequest[] = []
+  private _nextId = 1
+  private _scheduled = false
+  private _disposed = false
+
+  constructor(options: QuickJSComputationSandboxOptions = {}) {
+    const hardware = typeof navigator === 'undefined' ? 2 : navigator.hardwareConcurrency || 2
+    const count = options.workerCount ?? Math.min(4, Math.max(1, hardware - 1))
+    const watchdogMs = options.watchdogMs ?? 500
+    this._workers = Array.from({ length: count }, () => new WorkerSlot(watchdogMs))
+  }
+
+  execute(request: ComputationSandboxRequest): Promise<unknown> {
+    if (this._disposed) {
+      return Promise.reject(new Error('Computation sandbox is disposed.'))
+    }
+    return new Promise((resolve, reject) => {
+      this._queue.push({ id: this._nextId++, request, resolve, reject })
+      if (!this._scheduled) {
+        this._scheduled = true
+        queueMicrotask(() => this._flush())
+      }
+    })
+  }
+
+  dispose(): void {
+    this._disposed = true
+    for (const item of this._queue) {
+      item.reject(new Error('Computation sandbox is disposed.'))
+    }
+    this._queue.splice(0)
+    for (const worker of this._workers) {
+      worker.dispose()
+    }
+  }
+
+  private _flush(): void {
+    this._scheduled = false
+    if (this._disposed || !this._queue.length) {
+      return
+    }
+    const batches = Array.from({ length: this._workers.length }, () => [] as PendingRequest[])
+    let index = 0
+    while (this._queue.length) {
+      batches[index++ % batches.length]!.push(this._queue.shift()!)
+    }
+    batches.forEach((batch, workerIndex) => {
+      if (batch.length) {
+        this._workers[workerIndex]!.execute(batch)
+      }
+    })
+  }
+}
 export function createQuickJSComputationSandbox(options?: QuickJSComputationSandboxOptions): QuickJSComputationSandbox {
   return new QuickJSComputationSandbox(options)
 }
