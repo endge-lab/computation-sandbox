@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
+    "target": "esnext",
+    "lib": ["ESNext", "DOM", "WebWorker"],
     "rootDir": "./src",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "bundler",
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "lib": ["ESNext", "DOM", "WebWorker"]
+    "skipLibCheck": true
   },
   "include": ["src/**/*.ts"]
 }

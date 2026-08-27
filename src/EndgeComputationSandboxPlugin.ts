@@ -1,5 +1,5 @@
-import { Endge, EndgeModule } from '@endge/core'
 import type { EndgePlugin } from '@endge/core'
+import { Endge, EndgeModule } from '@endge/core'
 
 import { createQuickJSComputationSandbox } from './QuickJSComputationSandbox'
 

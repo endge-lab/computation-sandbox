@@ -1,8 +1,8 @@
+import type { ComputationSandboxRequest } from '@endge/core'
 import variant from '@jitl/quickjs-ng-wasmfile-release-sync'
 import { newQuickJSWASMModuleFromVariant, shouldInterruptAfterDeadline } from 'quickjs-emscripten-core'
-import ts from 'typescript'
 
-import type { ComputationSandboxRequest } from '@endge/core'
+import ts from 'typescript'
 
 export interface QuickJSComputationVMOptions {
   executionTimeoutMs?: number
@@ -26,8 +26,9 @@ export class QuickJSComputationVM {
 
   async execute(request: ComputationSandboxRequest): Promise<unknown> {
     assertJsonCompatible(request.inputs, 'inputs')
-    if (!this.moduleSources.has(request.moduleKey))
+    if (!this.moduleSources.has(request.moduleKey)) {
       this.moduleSources.set(request.moduleKey, transpileCompute(request.source))
+    }
 
     const module = await this.quickJs
     const runtime = module.newRuntime()
@@ -204,14 +205,18 @@ function makeProgram(compiledSource: string, inputs: Record<string, unknown>): s
 }
 
 function assertJsonCompatible(value: unknown, label: string, seen = new Set<object>()): void {
-  if (value === null || typeof value === 'string' || typeof value === 'boolean')
+  if (value === null || typeof value === 'string' || typeof value === 'boolean') {
     return
-  if (typeof value === 'number' && Number.isFinite(value))
+  }
+  if (typeof value === 'number' && Number.isFinite(value)) {
     return
-  if (typeof value !== 'object')
+  }
+  if (typeof value !== 'object') {
+    throw new TypeError(`Computation ${label} must be JSON-compatible.`)
+  }
+  if (seen.has(value)) {
     throw new Error(`Computation ${label} must be JSON-compatible.`)
-  if (seen.has(value))
-    throw new Error(`Computation ${label} must be JSON-compatible.`)
+  }
   seen.add(value)
   const prototype = Object.getPrototypeOf(value)
   if (Array.isArray(value)) {
@@ -227,7 +232,8 @@ function assertJsonCompatible(value: unknown, label: string, seen = new Set<obje
 }
 
 function errorMessage(error: unknown): string {
-  if (typeof error === 'object' && error && 'message' in error)
+  if (typeof error === 'object' && error && 'message' in error) {
     return String(error.message)
+  }
   return String(error)
 }

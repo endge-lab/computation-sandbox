@@ -1,7 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 
-import { defineConfig } from 'vite'
 import dts from 'unplugin-dts/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   base: './',

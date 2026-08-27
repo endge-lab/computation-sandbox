@@ -1,18 +1,18 @@
 {
   "name": "@endge/computation-sandbox",
-  "version": "0.1.14",
+  "type": "module",
+  "version": "0.1.15",
   "private": false,
   "license": "Apache-2.0",
-  "type": "module",
-  "main": "./dist/computation-sandbox.js",
-  "module": "./dist/computation-sandbox.js",
-  "types": "./dist/main.d.ts",
   "exports": {
     ".": {
       "types": "./dist/main.d.ts",
       "import": "./dist/computation-sandbox.js"
     }
   },
+  "main": "./dist/computation-sandbox.js",
+  "module": "./dist/computation-sandbox.js",
+  "types": "./dist/main.d.ts",
   "files": [
     "dist"
   ],
@@ -24,13 +24,13 @@
     "lint-check": "eslint . --cache",
     "lint-fix": "eslint . --fix --cache"
   },
+  "peerDependencies": {
+    "@endge/core": "^3.0.1 || ^4.0.0"
+  },
   "dependencies": {
     "@jitl/quickjs-ng-wasmfile-release-sync": "^0.32.0",
     "quickjs-emscripten-core": "^0.32.0",
     "typescript": "~6.0.3"
-  },
-  "peerDependencies": {
-    "@endge/core": "^3.0.1 || ^4.0.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "9.3.0",

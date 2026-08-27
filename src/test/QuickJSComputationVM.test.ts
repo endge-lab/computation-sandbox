@@ -1,9 +1,9 @@
-import { describe, expect, it } from 'vitest'
 import { compileComputation, ComputationGraphExecutor } from '@endge/core'
+import { describe, expect, it } from 'vitest'
 
 import { QuickJSComputationVM } from '../worker/QuickJSComputationVM'
 
-describe('QuickJSComputationVM', () => {
+describe('quickJSComputationVM', () => {
   it('executes transpiled TypeScript with the shared pure API', async () => {
     const vm = new QuickJSComputationVM()
     await expect(vm.execute({
