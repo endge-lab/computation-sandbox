@@ -25,7 +25,7 @@
     "lint-fix": "eslint . --fix --cache"
   },
   "peerDependencies": {
-    "@endge/core": "^3.0.1 || ^4.0.0"
+    "@endge/core": "^3.0.1 || ^4.0.0 || ^5.0.0"
   },
   "dependencies": {
     "@jitl/quickjs-ng-wasmfile-release-sync": "^0.32.0",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "9.3.0",
-    "@endge/core": "^4.0.0",
+    "@endge/core": "^5.0.0",
     "@endge/raph": "^3.0.11",
     "@endge/utils": "^0.25.0",
     "eslint": "10.9.1",
