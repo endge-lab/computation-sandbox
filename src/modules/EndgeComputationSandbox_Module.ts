@@ -1,5 +1,5 @@
 import { Endge, EndgeModule } from '@endge/core'
-import { createQuickJSComputationSandbox } from './QuickJSComputationSandbox'
+import { createQuickJSComputationSandbox } from '../QuickJSComputationSandbox'
 
 /** Подключает изолированный QuickJS adapter к computation runtime на время lifecycle Endge. */
 export class EndgeComputationSandbox_Module extends EndgeModule {

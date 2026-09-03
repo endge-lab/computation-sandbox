@@ -1,6 +1,6 @@
 import type { EndgePlugin } from '@endge/core'
 import { Endge } from '@endge/core'
-import { EndgeComputationSandbox_Module } from './EndgeComputationSandbox_Module'
+import { EndgeComputationSandbox_Module } from './modules/EndgeComputationSandbox_Module'
 
 export const EndgeComputationSandboxPlugin: EndgePlugin = {
   id: '@endge/computation-sandbox',
