@@ -15,12 +15,12 @@ export class EndgeComputationSandbox_Module extends EndgeModule {
   /** Создаёт и подключает sandbox adapter перед запуском runtime. */
   public override setup(): void {
     this._adapter = createQuickJSComputationSandbox()
-    Endge.runtime.computation.setSandboxAdapter(this._adapter)
+    Endge.computations.setSandboxAdapter(this._adapter)
   }
 
   /** Отключает adapter и освобождает ссылку текущего lifecycle. */
   public override reset(): void {
-    Endge.runtime.computation.setSandboxAdapter(null)
+    Endge.computations.setSandboxAdapter(null)
     this._adapter = null
   }
 }
