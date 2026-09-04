@@ -18,8 +18,8 @@ export default defineConfig({
     format: 'es',
     rollupOptions: {
       output: {
-        // The published worker is consumed as a static asset by downstream Vite builds.
-        // Keep it self-contained so consumers do not have to discover and copy sibling chunks.
+        // Опубликованный worker используется последующими Vite-сборками как статический ресурс.
+        // Он остаётся самодостаточным, чтобы consumers не искали и не копировали соседние chunks.
         inlineDynamicImports: true,
       },
     },

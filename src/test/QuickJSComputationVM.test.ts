@@ -3,8 +3,8 @@ import { describe, expect, it } from 'vitest'
 
 import { QuickJSComputationVM } from '../worker/QuickJSComputationVM'
 
-describe('quickJSComputationVM', () => {
-  it('executes transpiled TypeScript with the shared pure API', async () => {
+describe('виртуальная машина QuickJS для Computation', () => {
+  it('выполняет транспилированный TypeScript через общий чистый API', async () => {
     const vm = new QuickJSComputationVM()
     await expect(vm.execute({
       computationIdentity: 'demo',
@@ -20,7 +20,7 @@ describe('quickJSComputationVM', () => {
     })).resolves.toEqual({ total: 12, tone: 'success' })
   }, 10_000)
 
-  it('interrupts runaway code and rejects non-JSON results', async () => {
+  it('прерывает зациклившийся код и отклоняет результаты вне JSON', async () => {
     const vm = new QuickJSComputationVM({ executionTimeoutMs: 20 })
     await expect(vm.execute({
       computationIdentity: 'demo',
@@ -39,7 +39,7 @@ describe('quickJSComputationVM', () => {
     })).rejects.toThrow('JSON-compatible')
   }, 10_000)
 
-  it('executes the acceptance Endge to TypeScript to Endge graph', async () => {
+  it('выполняет приёмочный граф Endge → TypeScript → Endge', async () => {
     const compiled = compileComputation({
       source: `defineComputation({
         outputs: {

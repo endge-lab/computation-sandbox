@@ -119,7 +119,7 @@ class WorkerSlot {
   }
 }
 
-/** Batched Worker pool adapter for the core computation runtime. */
+/** Адаптер пакетного пула Worker для runtime вычислений ядра. */
 export class QuickJSComputationSandbox implements ComputationSandboxAdapter {
   private readonly _workers: WorkerSlot[]
   private readonly _queue: PendingRequest[] = []

@@ -10,7 +10,7 @@ export interface QuickJSComputationVMOptions {
   stackLimitBytes?: number
 }
 
-/** One isolated QuickJS VM factory used inside a Worker. */
+/** Единая изолированная фабрика QuickJS VM, используемая внутри Worker. */
 export class QuickJSComputationVM {
   private readonly _quickJs = newQuickJSWASMModuleFromVariant(variant)
   private readonly _moduleSources = new Map<string, string>()
