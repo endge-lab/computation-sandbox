@@ -1,14 +1,19 @@
 import type { EndgePlugin } from '@endge/core'
-import { Endge } from '@endge/core'
 import { EndgeComputationSandbox_Module } from './modules/EndgeComputationSandbox_Module'
+
+declare module '@endge/core' {
+  interface EndgeExtensions {
+    readonly computationSandbox: EndgeComputationSandbox_Module
+  }
+}
 
 export const EndgeComputationSandboxPlugin: EndgePlugin = {
   id: '@endge/computation-sandbox',
-  install(): void {
-    Endge.defineModule({
+  modules: [
+    {
       key: 'computationSandbox',
-      module: new EndgeComputationSandbox_Module(),
+      create: () => new EndgeComputationSandbox_Module(),
       before: 'runtime',
-    })
-  },
+    },
+  ],
 }
