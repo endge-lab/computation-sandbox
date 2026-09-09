@@ -22,14 +22,14 @@ importers:
         specifier: 9.3.0
         version: 9.3.0(@typescript-eslint/typescript-estree@8.68.0(typescript@6.0.3))(@typescript-eslint/utils@8.68.0(eslint@10.9.1)(typescript@6.0.3))(@vue/compiler-sfc@3.5.40)(eslint@10.9.1)(typescript@6.0.3)(vitest@2.1.9)
       '@endge/core':
-        specifier: ^7.0.0
-        version: 7.0.1(@endge/raph@3.2.0)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)
+        specifier: ^8.0.0
+        version: 8.0.0(@endge/raph@3.3.0)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)
       '@endge/raph':
-        specifier: ^3.2.0
-        version: 3.2.0
+        specifier: ^3.3.0
+        version: 3.3.0
       '@endge/utils':
-        specifier: ^0.26.0
-        version: 0.26.0
+        specifier: ^0.26.1
+        version: 0.26.1
       eslint:
         specifier: 10.9.1
         version: 10.9.1
@@ -155,19 +155,19 @@ packages:
       oxlint:
         optional: true
 
-  '@endge/core@7.0.1':
-    resolution: {integrity: sha512-n5yDGrjOy6UjWn2gW8uHeTSSNcRn6SF6thTNAhNRP2v1WVJSfSXARi2Wnmi0Iq/QVzQIJfi1nMH/F8n6O8jnRg==}
+  '@endge/core@8.0.0':
+    resolution: {integrity: sha512-JT4hCPWlCVwTmqw89MOcfEPCcbTF1GgJ2IWEKqPVWix3VeW8gY3MQRZcU8FszA3PTG9+igX1s3N+lsQaVdlW+A==}
     peerDependencies:
-      '@endge/raph': ^3.2.0
+      '@endge/raph': ^3.3.0
       class-transformer: ^0.5.1
       class-validator: ^0.14.1
       reflect-metadata: ^0.2.2
 
-  '@endge/raph@3.2.0':
-    resolution: {integrity: sha512-e3PPuN+0+Wz8gqibtJzV8DO0Rr4oxocNJO9rS/o7c+oit/Dp8G+Jx8O7O/KO0HzIu0rOFE1zAFa967R1uT2xNA==}
+  '@endge/raph@3.3.0':
+    resolution: {integrity: sha512-1tiytJD2XYD3sdIVU6c3KittLH/bqPz7ovlHyIJVjbebC49ZKpI60cyFBteEK7eF+F4poYesfee95iiZZbFrIA==}
 
-  '@endge/utils@0.26.0':
-    resolution: {integrity: sha512-YmHQPFRsL2EWSND+Xqv7EyB49Zdixn0qmztWOTXa2bTNlFfvG2wufllCIaqJ54BI9bObjWY5k6dw/S1EyOkn0Q==}
+  '@endge/utils@0.26.1':
+    resolution: {integrity: sha512-En8ITSHpovt68Dy0v/xSqoXJN7oO5eylIsZ54k8AjM74L0jF09OAOg+s2bVsb9DEZiVzMf37FcoFx0pF9RZLGg==}
 
   '@es-joy/jsdoccomment@0.91.0':
     resolution: {integrity: sha512-vgqlMGNNhZxwDYbUNIHj3Hskb4R28iqdXx90ufHyt/NeuTQkeqjTDslAs9I0/GCAfbxP5BpH5WsL1R1fht5Lxg==}
@@ -2553,12 +2553,12 @@ snapshots:
     optionalDependencies:
       eslint: 10.9.1
 
-  '@endge/core@7.0.1(@endge/raph@3.2.0)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)':
+  '@endge/core@8.0.0(@endge/raph@3.3.0)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)':
     dependencies:
       '@babel/parser': 7.29.7
       '@babel/types': 7.29.7
-      '@endge/raph': 3.2.0
-      '@endge/utils': 0.26.0
+      '@endge/raph': 3.3.0
+      '@endge/utils': 0.26.1
       '@vue/compiler-dom': 3.5.40
       '@vue/compiler-sfc': 3.5.40
       axios: 1.18.1
@@ -2580,9 +2580,9 @@ snapshots:
       - debug
       - supports-color
 
-  '@endge/raph@3.2.0': {}
+  '@endge/raph@3.3.0': {}
 
-  '@endge/utils@0.26.0':
+  '@endge/utils@0.26.1':
     dependencies:
       '@microsoft/fetch-event-source': 2.0.1
       class-transformer: 0.5.1
