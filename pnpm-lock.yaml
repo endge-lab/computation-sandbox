@@ -22,8 +22,8 @@ importers:
         specifier: 9.3.0
         version: 9.3.0(@typescript-eslint/typescript-estree@8.68.0(typescript@6.0.3))(@typescript-eslint/utils@8.68.0(eslint@10.9.1)(typescript@6.0.3))(@vue/compiler-sfc@3.5.40)(eslint@10.9.1)(typescript@6.0.3)(vitest@2.1.9)
       '@endge/core':
-        specifier: ^8.0.0
-        version: 8.0.0(@endge/raph@3.3.0)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)
+        specifier: ^9.0.0
+        version: 9.0.0(@endge/raph@3.3.0)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)
       '@endge/raph':
         specifier: ^3.3.0
         version: 3.3.0
@@ -155,8 +155,8 @@ packages:
       oxlint:
         optional: true
 
-  '@endge/core@8.0.0':
-    resolution: {integrity: sha512-JT4hCPWlCVwTmqw89MOcfEPCcbTF1GgJ2IWEKqPVWix3VeW8gY3MQRZcU8FszA3PTG9+igX1s3N+lsQaVdlW+A==}
+  '@endge/core@9.0.0':
+    resolution: {integrity: sha512-gZGP0Nms63dVT1LaSY4IVhxFLY57qx+5AFAI90bxzTzWzpI8z7v7Ht4K4UDzgYEFTE7r3LiW0vDHNwUxFSQXEA==}
     peerDependencies:
       '@endge/raph': ^3.3.0
       class-transformer: ^0.5.1
@@ -2553,7 +2553,7 @@ snapshots:
     optionalDependencies:
       eslint: 10.9.1
 
-  '@endge/core@8.0.0(@endge/raph@3.3.0)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)':
+  '@endge/core@9.0.0(@endge/raph@3.3.0)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)':
     dependencies:
       '@babel/parser': 7.29.7
       '@babel/types': 7.29.7
