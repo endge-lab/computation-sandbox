@@ -22,14 +22,14 @@ importers:
         specifier: 9.3.0
         version: 9.3.0(@typescript-eslint/typescript-estree@8.68.0(typescript@6.0.3))(@typescript-eslint/utils@8.68.0(eslint@10.9.1)(typescript@6.0.3))(@vue/compiler-sfc@3.5.40)(eslint@10.9.1)(typescript@6.0.3)(vitest@2.1.9)
       '@endge/core':
-        specifier: ^9.0.0
-        version: 9.0.0(@endge/raph@3.3.0)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)
+        specifier: ^10.0.0
+        version: 10.0.0(@endge/raph@3.3.0)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)
       '@endge/raph':
         specifier: ^3.3.0
         version: 3.3.0
       '@endge/utils':
-        specifier: ^0.26.1
-        version: 0.26.1
+        specifier: ^0.27.0
+        version: 0.27.0
       eslint:
         specifier: 10.9.1
         version: 10.9.1
@@ -155,8 +155,8 @@ packages:
       oxlint:
         optional: true
 
-  '@endge/core@9.0.0':
-    resolution: {integrity: sha512-gZGP0Nms63dVT1LaSY4IVhxFLY57qx+5AFAI90bxzTzWzpI8z7v7Ht4K4UDzgYEFTE7r3LiW0vDHNwUxFSQXEA==}
+  '@endge/core@10.0.0':
+    resolution: {integrity: sha512-3/YrKF5TlGCw5qxvCB7CjMRWQHbGSqXT3Db4+n9ulJlN4gxqtbh2FzOgIhi0WQG8jSQEJSUpx46+6Alj9I2RxA==}
     peerDependencies:
       '@endge/raph': ^3.3.0
       class-transformer: ^0.5.1
@@ -166,8 +166,8 @@ packages:
   '@endge/raph@3.3.0':
     resolution: {integrity: sha512-1tiytJD2XYD3sdIVU6c3KittLH/bqPz7ovlHyIJVjbebC49ZKpI60cyFBteEK7eF+F4poYesfee95iiZZbFrIA==}
 
-  '@endge/utils@0.26.1':
-    resolution: {integrity: sha512-En8ITSHpovt68Dy0v/xSqoXJN7oO5eylIsZ54k8AjM74L0jF09OAOg+s2bVsb9DEZiVzMf37FcoFx0pF9RZLGg==}
+  '@endge/utils@0.27.0':
+    resolution: {integrity: sha512-abuCAbeV/k/Daez4dsIegw0lB8R8TIAHqRYiXYFHs6JAWm26qWsyOqO5Dji6k5oOF0dlTNpexQkPlBgvefF8wQ==}
 
   '@es-joy/jsdoccomment@0.91.0':
     resolution: {integrity: sha512-vgqlMGNNhZxwDYbUNIHj3Hskb4R28iqdXx90ufHyt/NeuTQkeqjTDslAs9I0/GCAfbxP5BpH5WsL1R1fht5Lxg==}
@@ -2553,12 +2553,12 @@ snapshots:
     optionalDependencies:
       eslint: 10.9.1
 
-  '@endge/core@9.0.0(@endge/raph@3.3.0)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)':
+  '@endge/core@10.0.0(@endge/raph@3.3.0)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)':
     dependencies:
       '@babel/parser': 7.29.7
       '@babel/types': 7.29.7
       '@endge/raph': 3.3.0
-      '@endge/utils': 0.26.1
+      '@endge/utils': 0.27.0
       '@vue/compiler-dom': 3.5.40
       '@vue/compiler-sfc': 3.5.40
       axios: 1.18.1
@@ -2582,7 +2582,7 @@ snapshots:
 
   '@endge/raph@3.3.0': {}
 
-  '@endge/utils@0.26.1':
+  '@endge/utils@0.27.0':
     dependencies:
       '@microsoft/fetch-event-source': 2.0.1
       class-transformer: 0.5.1
