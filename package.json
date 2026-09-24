@@ -1,0 +1,50 @@
+{
+  "name": "@endge/computation-sandbox",
+  "type": "module",
+  "version": "0.7.0-dev",
+  "private": false,
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/endge-lab/computation-sandbox.git"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "import": "./dist/computation-sandbox.js"
+    }
+  },
+  "main": "./dist/computation-sandbox.js",
+  "module": "./dist/computation-sandbox.js",
+  "types": "./dist/main.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint-check": "eslint . --cache",
+    "lint-fix": "eslint . --fix --cache"
+  },
+  "peerDependencies": {
+    "@endge/core": "14.0.0-dev.2"
+  },
+  "dependencies": {
+    "@jitl/quickjs-ng-wasmfile-release-sync": "^0.32.0",
+    "quickjs-emscripten-core": "^0.32.0",
+    "typescript": "~6.0.3"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "9.3.0",
+    "@endge/core": "14.0.0-dev.2",
+    "@endge/utils": "^0.27.0",
+    "@raphy-js/raph": "1.0.0-dev.2",
+    "eslint": "10.9.1",
+    "rimraf": "^6.0.1",
+    "unplugin-dts": "^1.0.3",
+    "vite": "^6.1.0",
+    "vitest": "^2.1.9"
+  }
+}
