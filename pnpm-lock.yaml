@@ -22,11 +22,11 @@ importers:
         specifier: 9.3.0
         version: 9.3.0(@typescript-eslint/typescript-estree@8.68.0(typescript@6.0.3))(@typescript-eslint/utils@8.68.0(eslint@10.9.1)(typescript@6.0.3))(@vue/compiler-sfc@3.5.40)(eslint@10.9.1)(typescript@6.0.3)(vitest@2.1.9)
       '@endge/core':
-        specifier: 14.0.0-dev.2
-        version: 14.0.0-dev.2(@raphy-js/raph@1.0.0-dev.2)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)
+        specifier: 1.0.0-dev
+        version: 1.0.0-dev(@raphy-js/raph@1.0.0-dev.2)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)
       '@endge/utils':
-        specifier: ^0.27.0
-        version: 0.27.0
+        specifier: 1.0.0-dev
+        version: 1.0.0-dev
       '@raphy-js/raph':
         specifier: 1.0.0-dev.2
         version: 1.0.0-dev.2
@@ -159,16 +159,16 @@ packages:
       oxlint:
         optional: true
 
-  '@endge/core@14.0.0-dev.2':
-    resolution: {integrity: sha512-HRSHXz3fCHG9lm/VRrcPkFH468IqeuWHsm0/4bD7Pk7clb5iMXfJkyIbFcQtN0yNAoYQB5kVkwDXu6RzRPYxIg==}
+  '@endge/core@1.0.0-dev':
+    resolution: {integrity: sha512-trTrfEYfIsGa43bVz7OMxXrCXfp/HevA5HO8uItF2d2HCyCkCei93/YLbGKI5ttcMBWO/XP1TVSCqwa7/nfyaQ==}
     peerDependencies:
       '@raphy-js/raph': 1.0.0-dev.2
       class-transformer: ^0.5.1
       class-validator: ^0.14.1
       reflect-metadata: ^0.2.2
 
-  '@endge/utils@0.27.0':
-    resolution: {integrity: sha512-abuCAbeV/k/Daez4dsIegw0lB8R8TIAHqRYiXYFHs6JAWm26qWsyOqO5Dji6k5oOF0dlTNpexQkPlBgvefF8wQ==}
+  '@endge/utils@1.0.0-dev':
+    resolution: {integrity: sha512-4ZxT6jLyKT+YJp4m083CNLDcbC81svJXFv0hBuDGsLUPG0WqtM58DR9dhzC41Tsn+ofgiTIH+VgJuQ/UoEqcog==}
 
   '@es-joy/jsdoccomment@0.91.0':
     resolution: {integrity: sha512-vgqlMGNNhZxwDYbUNIHj3Hskb4R28iqdXx90ufHyt/NeuTQkeqjTDslAs9I0/GCAfbxP5BpH5WsL1R1fht5Lxg==}
@@ -2568,12 +2568,12 @@ snapshots:
     optionalDependencies:
       eslint: 10.9.1
 
-  '@endge/core@14.0.0-dev.2(@raphy-js/raph@1.0.0-dev.2)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)':
+  '@endge/core@1.0.0-dev(@raphy-js/raph@1.0.0-dev.2)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)':
     dependencies:
       '@babel/generator': 7.29.8
       '@babel/parser': 7.29.9
       '@babel/types': 7.29.8
-      '@endge/utils': 0.27.0
+      '@endge/utils': 1.0.0-dev
       '@raphy-js/raph': 1.0.0-dev.2
       '@vue/compiler-dom': 3.5.40
       '@vue/compiler-sfc': 3.5.40
@@ -2597,7 +2597,7 @@ snapshots:
       - debug
       - supports-color
 
-  '@endge/utils@0.27.0':
+  '@endge/utils@1.0.0-dev':
     dependencies:
       '@microsoft/fetch-event-source': 2.0.1
       class-transformer: 0.5.1
