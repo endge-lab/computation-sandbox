@@ -1,7 +1,7 @@
 {
   "name": "@endge/computation-sandbox",
   "type": "module",
-  "version": "1.0.0-dev.1",
+  "version": "1.0.0-dev.2",
   "private": false,
   "license": "Apache-2.0",
   "repository": {
@@ -29,7 +29,7 @@
     "lint-fix": "eslint . --fix --cache"
   },
   "peerDependencies": {
-    "@endge/core": "1.0.0-dev.3"
+    "@endge/core": "1.0.0-dev.4"
   },
   "dependencies": {
     "@jitl/quickjs-ng-wasmfile-release-sync": "^0.32.0",
@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "9.3.0",
-    "@endge/core": "1.0.0-dev.3",
+    "@endge/core": "1.0.0-dev.4",
     "@endge/utils": "1.0.0-dev",
     "@raphy-js/raph": "1.0.0-dev.18",
     "eslint": "10.9.1",
