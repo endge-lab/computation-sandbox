@@ -4,6 +4,35 @@ import { describe, expect, it } from 'vitest'
 import { QuickJSComputationVM } from '../worker/QuickJSComputationVM'
 
 describe('виртуальная машина QuickJS для Computation', () => {
+  it('не открывает вычислению browser, Node и сетевые возможности host', async () => {
+    const vm = new QuickJSComputationVM()
+    await expect(vm.execute({
+      computationIdentity: 'isolation',
+      outputName: 'capabilities',
+      moduleKey: 'isolation-v1',
+      source: 'function() { return [typeof process, typeof require, typeof fetch, typeof window, typeof document] }',
+      inputs: {},
+    })).resolves.toEqual(['undefined', 'undefined', 'undefined', 'undefined', 'undefined'])
+  }, 10_000)
+
+  it('после исчерпания памяти освобождает VM и выполняет следующий запрос', async () => {
+    const vm = new QuickJSComputationVM({ memoryLimitBytes: 512 * 1024 })
+    await expect(vm.execute({
+      computationIdentity: 'memory',
+      outputName: 'large',
+      moduleKey: 'memory-large',
+      source: 'function() { return new Array(1000000).fill("large") }',
+      inputs: {},
+    })).rejects.toThrow()
+    await expect(vm.execute({
+      computationIdentity: 'memory',
+      outputName: 'small',
+      moduleKey: 'memory-small',
+      source: 'function() { return 42 }',
+      inputs: {},
+    })).resolves.toBe(42)
+  }, 10_000)
+
   it('выполняет транспилированный TypeScript через общий чистый API', async () => {
     const vm = new QuickJSComputationVM()
     await expect(vm.execute({
