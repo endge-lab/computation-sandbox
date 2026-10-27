@@ -63,18 +63,13 @@ class WorkerSlot {
     const batch = this._queued.shift()!
     this._active = batch
     this._timer = setTimeout(() => {
-      this._worker.terminate()
-      this._worker = this._createWorker()
-      for (const item of batch) {
-        item.reject(new Error(`Computation Worker exceeded ${this._watchdogMs} ms watchdog.`))
-      }
-      this._active = null
-      this._timer = null
-      this._busy = false
-      this._pump()
+      this._failBatch(batch, new Error(`Computation Worker exceeded ${this._watchdogMs} ms watchdog.`))
     }, this._watchdogMs)
 
     this._worker.onmessage = (event: MessageEvent<SandboxBatchResponse>) => {
+      if (this._disposed || this._active !== batch) {
+        return
+      }
       if (this._timer) {
         clearTimeout(this._timer)
       }
@@ -95,23 +90,36 @@ class WorkerSlot {
       this._pump()
     }
     this._worker.onerror = (event) => {
-      if (this._timer) {
-        clearTimeout(this._timer)
-      }
-      this._timer = null
-      for (const item of batch) {
-        item.reject(new Error(event.message || 'Computation Worker failed.'))
-      }
-      this._worker.terminate()
-      this._worker = this._createWorker()
-      this._active = null
-      this._busy = false
-      this._pump()
+      this._failBatch(batch, new Error(event.message || 'Computation Worker failed.'))
     }
-    this._worker.postMessage({
-      type: 'execute-batch',
-      requests: batch.map(({ id, request }) => ({ id, request })),
-    } satisfies SandboxBatchRequest)
+    try {
+      this._worker.postMessage({
+        type: 'execute-batch',
+        requests: batch.map(({ id, request }) => ({ id, request })),
+      } satisfies SandboxBatchRequest)
+    }
+    catch (error) {
+      this._failBatch(batch, error instanceof Error ? error : new Error(String(error)))
+    }
+  }
+
+  /** Завершает только текущий пакет и восстанавливает Worker для очереди. */
+  private _failBatch(batch: PendingRequest[], error: Error): void {
+    if (this._disposed || this._active !== batch) {
+      return
+    }
+    if (this._timer) {
+      clearTimeout(this._timer)
+    }
+    this._timer = null
+    this._worker.terminate()
+    this._worker = this._createWorker()
+    for (const item of batch) {
+      item.reject(error)
+    }
+    this._active = null
+    this._busy = false
+    this._pump()
   }
 
   private _createWorker(): Worker {
@@ -133,6 +141,12 @@ export class QuickJSComputationSandbox implements ComputationSandboxAdapter {
     const hardware = typeof navigator === 'undefined' ? 2 : navigator.hardwareConcurrency || 2
     const count = options.workerCount ?? Math.min(4, Math.max(1, hardware - 1))
     const watchdogMs = options.watchdogMs ?? 500
+    if (!Number.isSafeInteger(count) || count < 1) {
+      throw new RangeError('workerCount must be a positive safe integer.')
+    }
+    if (!Number.isFinite(watchdogMs) || watchdogMs <= 0) {
+      throw new RangeError('watchdogMs must be a positive finite number.')
+    }
     this._workers = Array.from({ length: count }, () => new WorkerSlot(watchdogMs))
   }
 
