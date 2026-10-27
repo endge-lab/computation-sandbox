@@ -22,8 +22,8 @@ importers:
         specifier: 9.3.0
         version: 9.3.0(@typescript-eslint/typescript-estree@8.68.0(typescript@6.0.3))(@typescript-eslint/utils@8.68.0(eslint@10.9.1)(typescript@6.0.3))(@vue/compiler-sfc@3.5.40)(eslint@10.9.1)(typescript@6.0.3)(vitest@2.1.9)
       '@endge/core':
-        specifier: 1.0.0-dev.11
-        version: 1.0.0-dev.11(@raphy-js/raph@1.0.1-dev.54)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)
+        specifier: 1.0.0-dev.12
+        version: 1.0.0-dev.12(@raphy-js/raph@1.0.1-dev.54)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)
       '@endge/utils':
         specifier: 1.0.0-dev.6
         version: 1.0.0-dev.6
@@ -169,8 +169,8 @@ packages:
       oxlint:
         optional: true
 
-  '@endge/core@1.0.0-dev.11':
-    resolution: {integrity: sha512-Uj/JuhokKfgf5ek5R6dS9BmVQdGn5QFQFyAX5ptuD8kkV34SE4sNbF1vQDv1kaeYfERGZpYLNvZWcfVFArqZWg==}
+  '@endge/core@1.0.0-dev.12':
+    resolution: {integrity: sha512-X3tvNwCWhA9WI4y7oa7x/2740ZXdr7EnRduw4D7r4tS3WmMUaV2hrjtiCTDu3Lhgyt0m0IQS6A0Kf8YWAAJnKw==}
     peerDependencies:
       '@raphy-js/raph': 1.0.0-dev.18 || 1.0.1-dev.25 || 1.0.1-dev.26 || 1.0.1-dev.54
       class-transformer: ^0.5.1
@@ -2736,7 +2736,7 @@ snapshots:
     optionalDependencies:
       eslint: 10.9.1
 
-  '@endge/core@1.0.0-dev.11(@raphy-js/raph@1.0.1-dev.54)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)':
+  '@endge/core@1.0.0-dev.12(@raphy-js/raph@1.0.1-dev.54)(class-transformer@0.5.1)(class-validator@0.14.4)(reflect-metadata@0.2.2)':
     dependencies:
       '@babel/generator': 7.29.8
       '@babel/parser': 7.29.9

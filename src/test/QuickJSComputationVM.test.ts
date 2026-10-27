@@ -68,6 +68,24 @@ describe('виртуальная машина QuickJS для Computation', () =>
     })).rejects.toThrow('JSON-compatible')
   }, 10_000)
 
+  it('принимает во входах свойства со значением undefined как отсутствующие ключи', async () => {
+    const vm = new QuickJSComputationVM()
+    await expect(vm.execute({
+      computationIdentity: 'filter',
+      outputName: 'state',
+      moduleKey: 'filter-state-v1',
+      source: 'function(inputs) { return [Object.keys(inputs.filter), typeof inputs.filter.search] }',
+      inputs: { filter: { statuses: [], search: undefined } },
+    })).resolves.toEqual([['statuses'], 'undefined'])
+    await expect(vm.execute({
+      computationIdentity: 'filter',
+      outputName: 'items',
+      moduleKey: 'filter-state-v1',
+      source: 'function(inputs) { return inputs }',
+      inputs: { items: [undefined] },
+    })).rejects.toThrow('JSON-compatible')
+  }, 10_000)
+
   it('выполняет приёмочный граф Endge → TypeScript → Endge', async () => {
     const compiled = compileComputation({
       source: `defineComputation({

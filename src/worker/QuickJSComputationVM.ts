@@ -27,7 +27,8 @@ export class QuickJSComputationVM {
   }
 
   async execute(request: ComputationSandboxRequest): Promise<unknown> {
-    assertJsonCompatible(request.inputs, 'inputs')
+    // Как JSON.stringify: свойство объекта со значением undefined во входах означает отсутствие ключа.
+    assertJsonCompatible(request.inputs, 'inputs', new Set(), true)
     if (!this._moduleSources.has(request.moduleKey)) {
       this._moduleSources.set(request.moduleKey, transpileCompute(request.source))
     }
@@ -206,7 +207,12 @@ function makeProgram(compiledSource: string, inputs: Record<string, unknown>): s
   `
 }
 
-function assertJsonCompatible(value: unknown, label: string, seen = new Set<object>()): void {
+function assertJsonCompatible(
+  value: unknown,
+  label: string,
+  seen = new Set<object>(),
+  allowUndefinedProperties = false,
+): void {
   if (value === null || typeof value === 'string' || typeof value === 'boolean') {
     return
   }
@@ -222,10 +228,15 @@ function assertJsonCompatible(value: unknown, label: string, seen = new Set<obje
   seen.add(value)
   const prototype = Object.getPrototypeOf(value)
   if (Array.isArray(value)) {
-    value.forEach(item => assertJsonCompatible(item, label, seen))
+    value.forEach(item => assertJsonCompatible(item, label, seen, allowUndefinedProperties))
   }
   else if (prototype === Object.prototype || prototype === null) {
-    Object.values(value as Record<string, unknown>).forEach(item => assertJsonCompatible(item, label, seen))
+    for (const item of Object.values(value as Record<string, unknown>)) {
+      if (item === undefined && allowUndefinedProperties) {
+        continue
+      }
+      assertJsonCompatible(item, label, seen, allowUndefinedProperties)
+    }
   }
   else {
     throw new Error(`Computation ${label} must be JSON-compatible.`)
